@@ -17,7 +17,7 @@ export class RegisterPageComponent {
   renderForm() {
     return this.formBuilder.group({
       name: [null, [Validators.required, Validators.pattern(FormUtils.namePattern)]],
-      email: [null, [Validators.required, Validators.pattern(FormUtils.emailPattern)]],
+      email: [null, [Validators.required, Validators.pattern(FormUtils.emailPattern)], [FormUtils.chekingServerResponse]],
       username: [null, [Validators.required, Validators.minLength(6)]],
       password: [null, [Validators.required, Validators.minLength(6)]],
       confirmPassword: [null, [Validators.required]],

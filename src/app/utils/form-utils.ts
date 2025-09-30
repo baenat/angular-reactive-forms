@@ -35,6 +35,9 @@ export class FormUtils {
       case 'emailTaken':
         return `El email esta siendo utilizado por otro usuario`;
 
+      case 'usernameInvalid':
+        return `El nombre de usuario no esta disponible`;
+
       case 'pattern':
         if (errors['pattern'].requiredPattern === FormUtils.emailPattern) {
           return `Email no es permitido`
@@ -98,5 +101,10 @@ export class FormUtils {
     }
 
     return null;
+  }
+
+  static checkingUsername(control: AbstractControl): ValidationErrors | null {
+    const fieldValue = control.value;
+    return fieldValue === 'parakee' ? { usernameInvalid: true } : null;
   }
 }

@@ -1,23 +1,38 @@
-import { FormArray, FormGroup, ValidationErrors } from '@angular/forms';
+import { AbstractControl, FormArray, FormGroup, ValidationErrors } from '@angular/forms';
 
 export class FormUtils {
-  // Expresiones regulares
+
+  static readonly namePattern = '([a-zA-Z]+) ([a-zA-Z]+)';
+  static readonly emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
+  static readonly notOnlySpacesPattern = '^[a-zA-Z0-9]+$';
 
   static getTextError(errors: ValidationErrors) {
-    for (const key of Object.keys(errors)) {
-      switch (key) {
-        case 'required':
-          return 'Este campo es requerido';
+    const keys = Object.keys(errors);
+    if (keys.length === 0) return null;
+    const key = keys[0];
 
-        case 'minlength':
-          return `Mínimo de ${errors['minlength'].requiredLength} caracteres.`;
+    switch (key) {
+      case 'required':
+        return 'Este campo es requerido';
 
-        case 'min':
-          return `Valor mínimo de ${errors['min'].min}`;
-      }
+      case 'minlength':
+        return `Mínimo de ${errors['minlength'].requiredLength} caracteres.`;
+
+      case 'min':
+        return `Valor mínimo de ${errors['min'].min}`;
+
+      case 'email':
+        return `Email no es valido`;
+
+      case 'pattern':
+        if (errors['pattern'].requiredPattern === FormUtils.emailPattern) {
+          return `Email no es permitido`
+        }
+        return `Error patron de expresion no controlado`;
+
+      default:
+        return `Error de validación no controlado ${key}`;
     }
-
-    return null;
   }
 
   static isValidField(form: FormGroup, fieldName: string): boolean | null {
@@ -50,6 +65,13 @@ export class FormUtils {
 
     return FormUtils.getTextError(errors);
   }
-}
 
-// FormUtils.isValidField()
+  static isFieldOneEqualFieldTwo(field1: string, field2: string) {
+    return (formGroup: AbstractControl) => {
+      const field1Value = formGroup.get(field1)?.value;
+      const field2Value = formGroup.get(field2)?.value;
+
+      return (field1Value === field2Value ? null : { passwordsNotEqual: true });
+    }
+  }
+}

@@ -9,5 +9,5 @@ import { SideMenuComponent } from './shared/components/side-menu/side-menu.compo
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'reactive-forms-app';
+  title = 'reactive-forms';
 }

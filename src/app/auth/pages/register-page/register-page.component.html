@@ -88,9 +88,9 @@
             placeholder="Confirmar la contraseña"
             formControlName="confirmPassword"
           />
-          @if (formUtils.isValidField(formRegister, 'confirmPassword')) {
+          @if (formRegister.errors && formRegister.touched) {
             <span class="form-text text-danger">
-              Las contraseñas deben de ser iguales
+              Las contraseñas no coinciden
             </span>
           }
         </div>

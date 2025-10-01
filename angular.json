@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "reactive-forms-app": {
+    "reactive-forms": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/reactive-forms-app",
+            "outputPath": "dist/reactive-forms",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -59,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "reactive-forms-app:build:production"
+              "buildTarget": "reactive-forms:build:production"
             },
             "development": {
-              "buildTarget": "reactive-forms-app:build:development"
+              "buildTarget": "reactive-forms:build:development"
             }
           },
           "defaultConfiguration": "development"

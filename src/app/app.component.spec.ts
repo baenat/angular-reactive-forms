@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'reactive-forms-app' title`, () => {
+  it(`should have the 'reactive-forms' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('reactive-forms-app');
+    expect(app.title).toEqual('reactive-forms');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, reactive-forms-app');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, reactive-forms');
   });
 });

@@ -14,6 +14,9 @@ export class RegisterPageComponent {
   formRegister: FormGroup = this.renderForm();
   formUtils = FormUtils;
 
+  showPassword: boolean = false;
+  showConfirmPassword: boolean = false;
+
   renderForm() {
     return this.formBuilder.group({
       name: [null, [Validators.required, Validators.pattern(FormUtils.namePattern)]],
@@ -35,6 +38,14 @@ export class RegisterPageComponent {
     }
 
     console.log(this.formRegister.value);
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
+  toggleConfirmPasswordVisibility() {
+    this.showConfirmPassword = !this.showConfirmPassword;
   }
 
 }

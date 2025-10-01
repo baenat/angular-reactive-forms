@@ -64,12 +64,18 @@
       <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Password</label>
         <div class="col-sm-9">
-          <input
-            type="password"
-            class="form-control"
-            placeholder="Password de su cuenta"
-            formControlName="password"
-          />
+          <div class="d-flex">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              class="form-control"
+              placeholder="Password de su cuenta"
+              formControlName="password"
+            />
+            <div class="input-group-prepend" (click)="togglePasswordVisibility()">
+              <div class="input-group-text"><i class="bi bi-eye-{{showPassword ? 'fill': 'slash'}}"></i></div>
+            </div>
+          </div>
+
           @if (formUtils.isValidField(formRegister, 'password')) {
             <span class="form-text text-danger">
               La contraseña debe de ser mayor de 6 caracteres.
@@ -82,12 +88,23 @@
       <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Confirmar</label>
         <div class="col-sm-9">
-          <input
-            type="password"
-            class="form-control"
-            placeholder="Confirmar la contraseña"
-            formControlName="confirmPassword"
-          />
+          <div class="d-flex">
+            <input
+              [type]="showConfirmPassword ? 'text' : 'password'"
+              class="form-control"
+              placeholder="Confirmar la contraseña"
+              formControlName="confirmPassword"
+            />
+            <div class="input-group-prepend" (click)="toggleConfirmPasswordVisibility()">
+              <div class="input-group-text"><i class="bi bi-eye-{{showConfirmPassword ? 'fill': 'slash'}}"></i></div>
+            </div>
+          </div>
+
+          @if (formUtils.isValidField(formRegister, 'password')) {
+            <span class="form-text text-danger">
+              La contraseña debe de ser mayor de 6 caracteres.
+            </span>
+          }
           @if (formRegister.errors && formRegister.touched) {
             <span class="form-text text-danger">
               Las contraseñas no coinciden
